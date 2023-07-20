@@ -7,6 +7,7 @@ import { typeOrmConfigAsync } from './config/typeorm.config';
 import { InvestigatorsModule } from './investigators/investigators.module';
 import { SeasonsModule } from './seasons/seasons.module';
 import { ChaptersModule } from './chapters/chapters.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ChaptersModule } from './chapters/chapters.module';
     InvestigatorsModule,
     SeasonsModule,
     ChaptersModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [],
