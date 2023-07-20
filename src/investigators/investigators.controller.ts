@@ -2,6 +2,8 @@ import {
   Body,
   Controller,
   Get,
+  Param,
+  ParseUUIDPipe,
   Post,
   Query,
   ValidationPipe,
@@ -20,6 +22,13 @@ export class InvestigatorsController {
     @Query(ValidationPipe) getInvestigatorsFilterDto: GetInvestigatorsFilterDto,
   ): Promise<Investigator[]> {
     return this.investigatorService.getInvestigators(getInvestigatorsFilterDto);
+  }
+
+  @Get('/:id')
+  getInvestigatorById(
+    @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
+  ): Promise<Investigator> {
+    return this.investigatorService.getInvestigatorById(id);
   }
 
   @Post()

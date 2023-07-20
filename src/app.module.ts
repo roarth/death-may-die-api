@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmExModule } from './config/orm/typeorm-ex.module';
 import { typeOrmConfigAsync } from './config/typeorm.config';
 import { InvestigatorsModule } from './investigators/investigators.module';
+import { SeasonsModule } from './seasons/seasons.module';
+import { ChaptersModule } from './chapters/chapters.module';
 
 @Module({
   imports: [
@@ -13,6 +15,8 @@ import { InvestigatorsModule } from './investigators/investigators.module';
     TypeOrmExModule.forCustomRepository([]),
     PingModule,
     InvestigatorsModule,
+    SeasonsModule,
+    ChaptersModule,
   ],
   controllers: [],
   providers: [],

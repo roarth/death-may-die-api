@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateInvestigatorDto } from './dto/create-investigator.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Investigator } from './orm/investigator.entity';
@@ -18,6 +18,18 @@ export class InvestigatorsService {
     return this.investigatorRepository.getInvestigators(
       getInvestigatorsFilterDto,
     );
+  }
+
+  async getInvestigatorById(id: string): Promise<Investigator> {
+    const found = await this.investigatorRepository.findOne({ where: { id } });
+
+    if (!found) {
+      throw new NotFoundException(
+        `Investigator with id "${id}" does not exists`,
+      );
+    }
+
+    return found;
   }
 
   async createInvestigator(
