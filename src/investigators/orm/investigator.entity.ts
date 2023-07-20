@@ -20,4 +20,7 @@ export class Investigator extends BaseEntity {
 
   @Column()
   name: string;
+
+  @Column()
+  avatar: string;
 }

@@ -13,6 +13,7 @@ import { CreateInvestigatorDto } from 'src/investigators/dto/create-investigator
 import { Investigator } from 'src/investigators/orm/investigator.entity';
 import { GetSeasonsFilterDto } from './dto/get-seasons-filter.dto';
 import { CreateSeasonDto } from './dto/create-season.dto';
+import { Season } from './orm/season.entity';
 
 @Controller('seasons')
 export class SeasonsController {
@@ -21,21 +22,21 @@ export class SeasonsController {
   @Get()
   getInvestigators(
     @Query(ValidationPipe) getSeasonsFilterDto: GetSeasonsFilterDto,
-  ): Promise<Investigator[]> {
+  ): Promise<Season[]> {
     return this.seasonsService.getSeasons(getSeasonsFilterDto);
   }
 
   @Get('/:id')
   getInvestigatorById(
     @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
-  ): Promise<Investigator> {
+  ): Promise<Season> {
     return this.seasonsService.getSeasonById(id);
   }
 
   @Post()
   createInvestigator(
     @Body(ValidationPipe) createSeasonDto: CreateSeasonDto,
-  ): Promise<Investigator> {
+  ): Promise<Season> {
     return this.seasonsService.createSeason(createSeasonDto);
   }
 }

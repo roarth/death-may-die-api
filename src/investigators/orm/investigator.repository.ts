@@ -36,9 +36,10 @@ export class InvestigatorRepository extends Repository<Investigator> {
 
   async createInvestigator(createInvestigatorDto: CreateInvestigatorDto) {
     const investigator = new Investigator();
-    const { name } = createInvestigatorDto;
+    const { name, avatar } = createInvestigatorDto;
 
     investigator.name = name;
+    investigator.avatar = avatar;
 
     try {
       await investigator.save();
