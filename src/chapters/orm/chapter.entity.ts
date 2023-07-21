@@ -20,4 +20,7 @@ export class Chapter extends BaseEntity {
 
   @Column()
   name: string;
+
+  @Column()
+  title: string;
 }

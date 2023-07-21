@@ -4,4 +4,8 @@ export class CreateChapterDto {
   @IsNotEmpty()
   @MinLength(5)
   name: string;
+
+  @IsNotEmpty()
+  @MinLength(5)
+  title: string;
 }

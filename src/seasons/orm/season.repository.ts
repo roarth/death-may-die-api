@@ -13,7 +13,10 @@ export class SeasonRepository extends Repository<Season> {
     getSeasonsFilterDto: GetSeasonsFilterDto,
   ): Promise<Season[]> {
     const { search } = getSeasonsFilterDto;
-    const query = this.createQueryBuilder('season');
+    const query = this.createQueryBuilder('season').leftJoinAndSelect(
+      'season.investigators',
+      'investigators',
+    );
 
     if (search) {
       query.andWhere('(season.name LIKE :search)', {

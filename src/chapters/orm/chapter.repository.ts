@@ -36,9 +36,10 @@ export class ChapterRepository extends Repository<Chapter> {
 
   async createChapter(createChapterDto: CreateChapterDto) {
     const chapter = new Chapter();
-    const { name } = createChapterDto;
+    const { name, title } = createChapterDto;
 
     chapter.name = name;
+    chapter.title = title;
 
     try {
       await chapter.save();
