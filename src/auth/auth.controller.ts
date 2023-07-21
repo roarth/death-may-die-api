@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { UserService } from 'src/users/user.service';
+import { RegisterUserDto } from './dto/register-user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -19,10 +20,10 @@ export class AuthController {
   ) {}
 
   @Post('/register')
-  signUp(
-    @Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto,
+  register(
+    @Body(ValidationPipe) registerUserDto: RegisterUserDto,
   ): Promise<void> {
-    return this.authService.register(authCredentialsDto);
+    return this.authService.register(registerUserDto);
   }
 
   @Post('/login')

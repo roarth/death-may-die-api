@@ -8,17 +8,18 @@ import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { CustomRepository } from 'src/config/orm/typeorm-ex.decorator';
+import { RegisterUserDto } from 'src/auth/dto/register-user.dto';
 
 @CustomRepository(User)
 export class UserRepository extends Repository<User> {
   private logger = new Logger('UserRepository');
 
-  async register(
-    authCredentialsDto: AuthCredentialsDto,
-  ): Promise<{ email: string }> {
-    const { email, password } = authCredentialsDto;
+  async register(registerUserDto: RegisterUserDto): Promise<{ email: string }> {
+    const { email, password, lastName, firstName } = registerUserDto;
     const user = new User();
     user.email = email;
+    user.firstName = firstName;
+    user.lastName = lastName;
     user.salt = await bcrypt.genSalt();
     user.password = await this.hashPassword(password, user.salt);
 
@@ -55,7 +56,7 @@ export class UserRepository extends Repository<User> {
 
   async getUserProfile(id: string): Promise<{ id: string; email: string }> {
     return this.createQueryBuilder('user')
-      .select(['user.id', 'user.email'])
+      .select(['user.id', 'user.email', 'user.firstName', 'user.lastName'])
       .where('user.id = :id', { id: id })
       .getOne();
   }
