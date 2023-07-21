@@ -8,6 +8,8 @@ import { InvestigatorsModule } from './investigators/investigators.module';
 import { SeasonsModule } from './seasons/seasons.module';
 import { ChaptersModule } from './chapters/chapters.module';
 import { CommonModule } from './common/common.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { CommonModule } from './common/common.module';
     SeasonsModule,
     ChaptersModule,
     CommonModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],
