@@ -4,6 +4,7 @@ import { Investigator } from './investigator.entity';
 import { CreateInvestigatorDto } from '../dto/create-investigator.dto';
 import { InternalServerErrorException, Logger } from '@nestjs/common';
 import { GetInvestigatorsFilterDto } from '../dto/get-investigators-filter.dto';
+import { Season } from 'src/seasons/orm/season.entity';
 
 @CustomRepository(Investigator)
 export class InvestigatorRepository extends Repository<Investigator> {
@@ -13,7 +14,10 @@ export class InvestigatorRepository extends Repository<Investigator> {
     getInvestigatorsFilterDto: GetInvestigatorsFilterDto,
   ): Promise<Investigator[]> {
     const { search } = getInvestigatorsFilterDto;
-    const query = this.createQueryBuilder('investigator');
+    const query = this.createQueryBuilder('investigator').leftJoinAndSelect(
+      'investigator.season',
+      'season',
+    );
 
     if (search) {
       query.andWhere('(investigator.name LIKE :search)', {
@@ -34,12 +38,17 @@ export class InvestigatorRepository extends Repository<Investigator> {
     }
   }
 
-  async createInvestigator(createInvestigatorDto: CreateInvestigatorDto) {
+  async createInvestigator(
+    createInvestigatorDto: CreateInvestigatorDto,
+    season: Season,
+  ) {
     const investigator = new Investigator();
     const { name, avatar } = createInvestigatorDto;
 
     investigator.name = name;
     investigator.avatar = avatar;
+
+    investigator.season = season;
 
     try {
       await investigator.save();

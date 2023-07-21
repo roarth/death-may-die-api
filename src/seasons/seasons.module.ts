@@ -8,5 +8,6 @@ import { TypeOrmExModule } from 'src/config/orm/typeorm-ex.module';
   imports: [TypeOrmExModule.forCustomRepository([SeasonRepository])],
   controllers: [SeasonsController],
   providers: [SeasonsService],
+  exports: [SeasonsService],
 })
 export class SeasonsModule {}

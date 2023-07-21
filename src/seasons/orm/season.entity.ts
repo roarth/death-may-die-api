@@ -1,3 +1,4 @@
+import { Investigator } from 'src/investigators/orm/investigator.entity';
 import {
   Entity,
   BaseEntity,
@@ -5,6 +6,7 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -20,4 +22,9 @@ export class Season extends BaseEntity {
 
   @Column()
   name: string;
+
+  @OneToMany(() => Investigator, (investigator) => investigator.season, {
+    eager: true,
+  })
+  investigators: Investigator[];
 }

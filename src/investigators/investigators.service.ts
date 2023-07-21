@@ -4,12 +4,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Investigator } from './orm/investigator.entity';
 import { InvestigatorRepository } from './orm/investigator.repository';
 import { GetInvestigatorsFilterDto } from './dto/get-investigators-filter.dto';
+import { SeasonsService } from 'src/seasons/seasons.service';
 
 @Injectable()
 export class InvestigatorsService {
   constructor(
     @InjectRepository(InvestigatorRepository)
     private investigatorRepository: InvestigatorRepository,
+    private readonly seasonsService: SeasonsService,
   ) {}
 
   async getInvestigators(
@@ -35,8 +37,11 @@ export class InvestigatorsService {
   async createInvestigator(
     createInvestigatorDto: CreateInvestigatorDto,
   ): Promise<Investigator> {
+    const { season } = createInvestigatorDto;
+    const foundSeason = await this.seasonsService.getSeasonById(season);
     return this.investigatorRepository.createInvestigator(
       createInvestigatorDto,
+      foundSeason,
     );
   }
 

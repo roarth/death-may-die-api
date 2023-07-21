@@ -1,4 +1,4 @@
-import { IsNotEmpty, MinLength } from 'class-validator';
+import { IsNotEmpty, IsUUID, MinLength } from 'class-validator';
 
 export class CreateInvestigatorDto {
   @IsNotEmpty()
@@ -8,4 +8,8 @@ export class CreateInvestigatorDto {
   @IsNotEmpty()
   @MinLength(5)
   avatar: string;
+
+  @IsNotEmpty()
+  @IsUUID(4)
+  season: string;
 }

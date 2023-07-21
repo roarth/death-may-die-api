@@ -1,3 +1,4 @@
+import { Season } from 'src/seasons/orm/season.entity';
 import {
   Entity,
   BaseEntity,
@@ -5,6 +6,8 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity()
@@ -23,4 +26,10 @@ export class Investigator extends BaseEntity {
 
   @Column()
   avatar: string;
+
+  @ManyToOne(() => Season, (season) => season.investigators, {
+    eager: false,
+  })
+  @JoinColumn({ name: 'seasonId' })
+  season: Season;
 }
