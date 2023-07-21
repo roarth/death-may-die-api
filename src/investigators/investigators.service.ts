@@ -39,4 +39,14 @@ export class InvestigatorsService {
       createInvestigatorDto,
     );
   }
+
+  async deleteInvestigator(id: string): Promise<void> {
+    const result = await this.investigatorRepository.delete({ id });
+
+    if (result.affected === 0) {
+      throw new NotFoundException(
+        `Investigator with id "${id}" does not exists`,
+      );
+    }
+  }
 }

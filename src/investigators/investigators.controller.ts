@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseUUIDPipe,
@@ -36,5 +37,12 @@ export class InvestigatorsController {
     @Body(ValidationPipe) createInvestigatorDto: CreateInvestigatorDto,
   ): Promise<Investigator> {
     return this.investigatorService.createInvestigator(createInvestigatorDto);
+  }
+
+  @Delete('/:id')
+  deleteInvestigator(
+    @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
+  ): Promise<void> {
+    return this.investigatorService.deleteInvestigator(id);
   }
 }
