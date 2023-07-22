@@ -12,4 +12,16 @@ export class CreateInvestigatorDto {
   @IsNotEmpty()
   @IsUUID(4)
   season: string;
+
+  @IsNotEmpty()
+  @MinLength(5)
+  punchline: string;
+
+  @IsNotEmpty()
+  @MinLength(5)
+  home: string;
+
+  @IsNotEmpty()
+  @MinLength(5)
+  background: string;
 }

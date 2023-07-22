@@ -32,4 +32,13 @@ export class Investigator extends BaseEntity {
   })
   @JoinColumn({ name: 'seasonId' })
   season: Season;
+
+  @Column()
+  punchline: string;
+
+  @Column()
+  home: string;
+
+  @Column()
+  background: string;
 }

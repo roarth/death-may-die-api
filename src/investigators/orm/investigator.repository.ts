@@ -43,11 +43,13 @@ export class InvestigatorRepository extends Repository<Investigator> {
     season: Season,
   ) {
     const investigator = new Investigator();
-    const { name, avatar } = createInvestigatorDto;
+    const { name, avatar, punchline, background, home } = createInvestigatorDto;
 
     investigator.name = name;
     investigator.avatar = avatar;
-
+    investigator.punchline = punchline;
+    investigator.background = background;
+    investigator.home = home;
     investigator.season = season;
 
     try {
