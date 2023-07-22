@@ -38,6 +38,23 @@ export class InvestigatorRepository extends Repository<Investigator> {
     }
   }
 
+  async getInvestigatorById(id: string): Promise<Investigator> {
+    const query = this.createQueryBuilder('investigator')
+      .leftJoinAndSelect('investigator.season', 'season')
+      .where('investigator.id = :id', { id: id });
+
+    try {
+      return await query.getOne();
+    } catch (error) {
+      this.logger.error(
+        `Failed to get Investigator. 
+        )}`,
+        error.stack,
+      );
+      throw new InternalServerErrorException();
+    }
+  }
+
   async createInvestigator(
     createInvestigatorDto: CreateInvestigatorDto,
     season: Season,

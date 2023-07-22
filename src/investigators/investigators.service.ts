@@ -23,15 +23,7 @@ export class InvestigatorsService {
   }
 
   async getInvestigatorById(id: string): Promise<Investigator> {
-    const found = await this.investigatorRepository.findOne({ where: { id } });
-
-    if (!found) {
-      throw new NotFoundException(
-        `Investigator with id "${id}" does not exists`,
-      );
-    }
-
-    return found;
+    return this.investigatorRepository.getInvestigatorById(id);
   }
 
   async createInvestigator(
