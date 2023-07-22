@@ -10,6 +10,9 @@ import { ChaptersModule } from './chapters/chapters.module';
 import { CommonModule } from './common/common.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { MonstersModule } from './monsters/monsters.module';
+import { SkillsModule } from './skills/skills.module';
+import { TerrainsModule } from './terrains/terrains.module';
 
 @Module({
   imports: [
@@ -23,6 +26,9 @@ import { UsersModule } from './users/users.module';
     CommonModule,
     AuthModule,
     UsersModule,
+    MonstersModule,
+    SkillsModule,
+    TerrainsModule,
   ],
   controllers: [],
   providers: [],
