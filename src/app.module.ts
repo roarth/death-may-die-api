@@ -17,6 +17,7 @@ import { EpisodesModule } from './episodes/episodes.module';
 import { EnemiesModule } from './enemies/enemies.module';
 import { EnemiesController } from './enemies/enemies.controller';
 import { EnemiesService } from './enemies/enemies.service';
+import { StatsModule } from './stats/stats.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { EnemiesService } from './enemies/enemies.service';
     TerrainsModule,
     EldersModule,
     EnemiesModule,
+    StatsModule,
   ],
   controllers: [EnemiesController],
   providers: [EnemiesService],
