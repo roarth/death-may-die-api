@@ -1,6 +1,6 @@
 import { IsNotEmpty, MinLength } from 'class-validator';
 
-export class CreateChapterDto {
+export class CreateEpisodeDto {
   @IsNotEmpty()
   @MinLength(5)
   name: string;

@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsOptional } from 'class-validator';
 
-export class GetChaptersFilterDto {
+export class GetEpisodesFilterDto {
   @IsOptional()
   @IsNotEmpty()
   search: string;

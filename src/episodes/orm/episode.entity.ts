@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Chapter extends BaseEntity {
+export class Episode extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

@@ -6,7 +6,6 @@ import { TypeOrmExModule } from './config/orm/typeorm-ex.module';
 import { typeOrmConfigAsync } from './config/typeorm.config';
 import { InvestigatorsModule } from './investigators/investigators.module';
 import { SeasonsModule } from './seasons/seasons.module';
-import { ChaptersModule } from './chapters/chapters.module';
 import { CommonModule } from './common/common.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
@@ -15,6 +14,7 @@ import { SkillsModule } from './skills/skills.module';
 import { TerrainsModule } from './terrains/terrains.module';
 import { EldersModule } from './elders/elders.module';
 import { EnnnemiesModule } from './ennnemies/ennnemies.module';
+import { EpisodesModule } from './episodes/episodes.module';
 
 @Module({
   imports: [
@@ -24,7 +24,7 @@ import { EnnnemiesModule } from './ennnemies/ennnemies.module';
     PingModule,
     InvestigatorsModule,
     SeasonsModule,
-    ChaptersModule,
+    EpisodesModule,
     CommonModule,
     AuthModule,
     UsersModule,
