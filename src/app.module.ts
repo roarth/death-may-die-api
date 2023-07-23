@@ -13,6 +13,8 @@ import { UsersModule } from './users/users.module';
 import { MonstersModule } from './monsters/monsters.module';
 import { SkillsModule } from './skills/skills.module';
 import { TerrainsModule } from './terrains/terrains.module';
+import { EldersModule } from './elders/elders.module';
+import { EnnnemiesModule } from './ennnemies/ennnemies.module';
 
 @Module({
   imports: [
@@ -29,6 +31,8 @@ import { TerrainsModule } from './terrains/terrains.module';
     MonstersModule,
     SkillsModule,
     TerrainsModule,
+    EldersModule,
+    EnnnemiesModule,
   ],
   controllers: [],
   providers: [],
