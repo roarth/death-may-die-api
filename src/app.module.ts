@@ -13,8 +13,10 @@ import { MonstersModule } from './monsters/monsters.module';
 import { SkillsModule } from './skills/skills.module';
 import { TerrainsModule } from './terrains/terrains.module';
 import { EldersModule } from './elders/elders.module';
-import { EnnnemiesModule } from './ennnemies/ennnemies.module';
 import { EpisodesModule } from './episodes/episodes.module';
+import { EnemiesModule } from './enemies/enemies.module';
+import { EnemiesController } from './enemies/enemies.controller';
+import { EnemiesService } from './enemies/enemies.service';
 
 @Module({
   imports: [
@@ -32,9 +34,9 @@ import { EpisodesModule } from './episodes/episodes.module';
     SkillsModule,
     TerrainsModule,
     EldersModule,
-    EnnnemiesModule,
+    EnemiesModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [EnemiesController],
+  providers: [EnemiesService],
 })
 export class AppModule {}
