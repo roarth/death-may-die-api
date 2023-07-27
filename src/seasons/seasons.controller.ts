@@ -20,21 +20,21 @@ export class SeasonsController {
   constructor(private seasonsService: SeasonsService) {}
 
   @Get()
-  getInvestigators(
+  getSeasons(
     @Query(ValidationPipe) getSeasonsFilterDto: GetSeasonsFilterDto,
   ): Promise<Season[]> {
     return this.seasonsService.getSeasons(getSeasonsFilterDto);
   }
 
   @Get('/:id')
-  getInvestigatorById(
+  getSeasonById(
     @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
   ): Promise<Season> {
     return this.seasonsService.getSeasonById(id);
   }
 
   @Post()
-  createInvestigator(
+  createSeason(
     @Body(ValidationPipe) createSeasonDto: CreateSeasonDto,
   ): Promise<Season> {
     return this.seasonsService.createSeason(createSeasonDto);
