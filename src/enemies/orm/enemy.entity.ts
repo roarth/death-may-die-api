@@ -24,4 +24,7 @@ export class Enemy extends BaseEntity {
 
   @Column()
   type: EnemyType;
+
+  @Column()
+  avatar: string;
 }
