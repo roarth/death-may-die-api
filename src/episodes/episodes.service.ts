@@ -4,12 +4,14 @@ import { GetEpisodesFilterDto } from './dto/get-episodes-filter.dto';
 import { Episode } from './orm/episode.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateEpisodeDto } from './dto/create-episode.dto';
+import { SeasonsService } from 'src/seasons/seasons.service';
 
 @Injectable()
 export class EpisodesService {
   constructor(
     @InjectRepository(EpisodeRepository)
     private episodeRepository: EpisodeRepository,
+    private readonly seasonsService: SeasonsService,
   ) {}
 
   async getEpisodes(
@@ -29,6 +31,8 @@ export class EpisodesService {
   }
 
   async createEpisode(createEpisodeDto: CreateEpisodeDto): Promise<Episode> {
-    return this.episodeRepository.createEpisode(createEpisodeDto);
+    const { season } = createEpisodeDto;
+    const foundSeason = await this.seasonsService.getSeasonById(season);
+    return this.episodeRepository.createEpisode(createEpisodeDto, foundSeason);
   }
 }

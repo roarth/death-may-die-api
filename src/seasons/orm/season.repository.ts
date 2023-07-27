@@ -15,6 +15,16 @@ export class SeasonRepository extends Repository<Season> {
     const { search } = getSeasonsFilterDto;
     const query = this.createQueryBuilder('season')
       .leftJoinAndSelect('season.investigators', 'investigators')
+      .leftJoinAndSelect('season.episodes', 'episodes')
+      .select([
+        'season',
+        'investigators.id',
+        'investigators.name',
+        'investigators.avatar',
+        'episodes.id',
+        'episodes.name',
+        'episodes.title',
+      ])
       .orderBy('season.name');
 
     if (search) {

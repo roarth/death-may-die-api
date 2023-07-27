@@ -6,6 +6,7 @@ import { InvestigatorRepository } from 'src/investigators/orm/investigator.repos
 import { EpisodeRepository } from 'src/episodes/orm/episode.repository';
 import { SkillRepository } from 'src/skills/orm/skill.repository';
 import { EnemyRepository } from 'src/enemies/orm/enemy.repository';
+import { ElderRepository } from 'src/elders/orm/elder.repository';
 
 @Injectable()
 export class StatsService {
@@ -20,6 +21,8 @@ export class StatsService {
     private skillRepository: SkillRepository,
     @InjectRepository(EnemyRepository)
     private enemyRepository: EnemyRepository,
+    @InjectRepository(ElderRepository)
+    private elderRepository: ElderRepository,
   ) {}
 
   async getGameObjectsStats(): Promise<StatsGame> {
@@ -28,13 +31,14 @@ export class StatsService {
     const investigatorsCount = await this.investigatorsRepository.count();
     const skillsCount = await this.skillRepository.count();
     const enemiesCount = await this.enemyRepository.count();
+    const eldersCount = await this.elderRepository.count();
 
     return {
       seasons: seasonsCount,
       episodes: episodesCount,
       investigators: investigatorsCount,
       skills: skillsCount,
-      elders: 3,
+      elders: eldersCount,
       enemies: enemiesCount,
     };
   }

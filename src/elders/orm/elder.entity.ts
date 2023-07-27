@@ -1,4 +1,3 @@
-import { Season } from 'src/seasons/orm/season.entity';
 import {
   Entity,
   BaseEntity,
@@ -6,12 +5,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  JoinColumn,
-  ManyToOne,
 } from 'typeorm';
 
 @Entity()
-export class Episode extends BaseEntity {
+export class Elder extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -23,13 +20,4 @@ export class Episode extends BaseEntity {
 
   @Column()
   name: string;
-
-  @Column()
-  title: string;
-
-  @ManyToOne(() => Season, (season) => season.episodes, {
-    eager: false,
-  })
-  @JoinColumn({ name: 'seasonId' })
-  season: Season;
 }

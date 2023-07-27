@@ -4,6 +4,7 @@ import { InternalServerErrorException, Logger } from '@nestjs/common';
 import { Episode } from './episode.entity';
 import { GetEpisodesFilterDto } from '../dto/get-episodes-filter.dto';
 import { CreateEpisodeDto } from '../dto/create-episode.dto';
+import { Season } from 'src/seasons/orm/season.entity';
 
 @CustomRepository(Episode)
 export class EpisodeRepository extends Repository<Episode> {
@@ -13,7 +14,9 @@ export class EpisodeRepository extends Repository<Episode> {
     getEpisodesFilterDto: GetEpisodesFilterDto,
   ): Promise<Episode[]> {
     const { search } = getEpisodesFilterDto;
-    const query = this.createQueryBuilder('episode');
+    const query = this.createQueryBuilder('episode')
+      .leftJoinAndSelect('episode.season', 'season')
+      .select(['episode', 'season']);
 
     if (search) {
       query.andWhere('(episode.name LIKE :search)', {
@@ -34,12 +37,13 @@ export class EpisodeRepository extends Repository<Episode> {
     }
   }
 
-  async createEpisode(createEpisodeDto: CreateEpisodeDto) {
+  async createEpisode(createEpisodeDto: CreateEpisodeDto, season: Season) {
     const episode = new Episode();
     const { name, title } = createEpisodeDto;
 
     episode.name = name;
     episode.title = title;
+    episode.season = season;
 
     try {
       await episode.save();

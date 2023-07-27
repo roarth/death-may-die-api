@@ -15,8 +15,6 @@ import { TerrainsModule } from './terrains/terrains.module';
 import { EldersModule } from './elders/elders.module';
 import { EpisodesModule } from './episodes/episodes.module';
 import { EnemiesModule } from './enemies/enemies.module';
-import { EnemiesController } from './enemies/enemies.controller';
-import { EnemiesService } from './enemies/enemies.service';
 import { StatsModule } from './stats/stats.module';
 
 @Module({
@@ -38,7 +36,7 @@ import { StatsModule } from './stats/stats.module';
     EnemiesModule,
     StatsModule,
   ],
-  controllers: [EnemiesController],
-  providers: [EnemiesService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

@@ -7,6 +7,7 @@ import { EnemyRepository } from 'src/enemies/orm/enemy.repository';
 import { EpisodeRepository } from 'src/episodes/orm/episode.repository';
 import { InvestigatorRepository } from 'src/investigators/orm/investigator.repository';
 import { SkillRepository } from 'src/skills/orm/skill.repository';
+import { ElderRepository } from 'src/elders/orm/elder.repository';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { SkillRepository } from 'src/skills/orm/skill.repository';
     TypeOrmExModule.forCustomRepository([EpisodeRepository]),
     TypeOrmExModule.forCustomRepository([SkillRepository]),
     TypeOrmExModule.forCustomRepository([EnemyRepository]),
+    TypeOrmExModule.forCustomRepository([ElderRepository]),
   ],
   providers: [StatsService],
   controllers: [StatsController],

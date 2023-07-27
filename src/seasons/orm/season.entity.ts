@@ -1,3 +1,4 @@
+import { Episode } from 'src/episodes/orm/episode.entity';
 import { Investigator } from 'src/investigators/orm/investigator.entity';
 import {
   Entity,
@@ -27,4 +28,9 @@ export class Season extends BaseEntity {
     eager: true,
   })
   investigators: Investigator[];
+
+  @OneToMany(() => Episode, (episode) => episode.season, {
+    eager: true,
+  })
+  episodes: Episode[];
 }
